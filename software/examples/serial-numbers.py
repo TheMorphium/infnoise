@@ -26,7 +26,7 @@ def readHexStrings(count, length):
     infnoise_proc = subprocess.Popen(["infnoise"], stdout=subprocess.PIPE)              # run infinite noise driver and
     bin2hex_proc = subprocess.Popen(["infnoise-bin2hex"], stdin=infnoise_proc.stdout,   # feed its stdout to the bin2hex utility,
                                     stdout=subprocess.PIPE)                             # you could also skip this and do the bin2hex conversion in python
-    while len(list) < count and infnoise_proc.poll() == None:
+    while len(list) < count and infnoise_proc.poll() is None:
         list.append(bin2hex_proc.stdout.read(length))
     infnoise_proc.terminate()
     bin2hex_proc.terminate()
